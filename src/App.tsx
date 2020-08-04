@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,14 +6,14 @@ import {
 } from "react-router-dom";
 
 function App() {
+  useEffect(() => {
+
+  }, []);
+
   return (
     <Router>
-      <nav>
-
-      </nav>
       <Switch>
         <Route path="/">
-
         </Route>
       </Switch>
     </Router>

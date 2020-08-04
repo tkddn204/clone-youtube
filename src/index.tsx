@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GlobalStyles from './styles/GlobalStyle';
+import GlobalStyles from './styles/global-style';
 import theme from './styles/theme';
 import App from './App';
 import { store } from './store';

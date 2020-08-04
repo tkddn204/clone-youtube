@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Guide from '../icons/Guide';
 
 const GuideBox = styled.div`
-  
+
 `;
 
-const Guide = () => <GuideBox>
-
+const GuideButton = () => <GuideBox>
+  <Guide />
 </GuideBox>
 
-export default Guide;
+export default GuideButton;

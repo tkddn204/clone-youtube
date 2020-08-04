@@ -2,7 +2,7 @@ import React from 'react';
 import {
   action
 } from '@storybook/addon-actions';
-import Guide from '../components/icons/guide';
+import Guide from '../components/icons/Guide';
 
 export default {
   title: 'Icon/Guide',

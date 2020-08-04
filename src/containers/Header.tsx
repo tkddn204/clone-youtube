@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Guide from '../../components/icons/guide';
-import Logo from '../../components/icons/guide';
+import Guide from '../components/icons/Guide';
+import Logo from '../components/icons/Guide';
 
 const HeaderBox = styled.div`
   
