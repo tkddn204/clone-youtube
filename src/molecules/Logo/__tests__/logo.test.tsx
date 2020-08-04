@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Logo from '../Logo';
+import Logo from '../../../atoms/LogoIcon';
 
 describe('<Logo />', () => {
   test('render default logo', () => {

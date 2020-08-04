@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Guide from '../Guide';
+import Guide from '../../../atoms/GuideIcon';
 
 describe('<Guide />', () => {
   test('render default guide', () => {
