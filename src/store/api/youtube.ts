@@ -3,7 +3,7 @@ import { google, youtube_v3 } from 'googleapis';
 class Youtube {
   // Singleton
   private static _instance: Youtube;
-  private apiKey: string | undefined;
+  private readonly apiKey: string | undefined;
   private youtubeApi: youtube_v3.Youtube;
 
   private constructor() {

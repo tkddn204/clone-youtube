@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Guide from '../atoms/GuideIcon';
-import Logo from '../atoms/LogoIcon';
+import Guide from '../../molecules/Guide';
+import Logo from '../../molecules/Logo';
 
 const HeaderBox = styled.header`
   display: flex;
@@ -18,13 +18,16 @@ const FlexBox = styled.div`
   align-items: center;
 `;
 
-const Header = () => <HeaderBox>
-  <FlexBox>
-    <Guide />
-    <Logo />
-  </FlexBox>
+const LeftBox = styled(FlexBox)`
+`;
+
+const Index = () => <HeaderBox>
+  <LeftBox>
+    <Guide/>
+    <Logo/>
+  </LeftBox>
   <FlexBox></FlexBox>
   <FlexBox></FlexBox>
 </HeaderBox>
 
-export default Header;
+export default Index;

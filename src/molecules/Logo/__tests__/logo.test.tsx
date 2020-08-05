@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import Logo from '../../../atoms/LogoIcon';
+import {render} from '@testing-library/react';
+import Logo from '..';
 
 describe('<Logo />', () => {
   test('render default logo', () => {
-    const { container } = render(
-      <Logo />
+    const {container} = render(
+      <Logo/>
     );
 
     expect(container.querySelector('#logo-default-text-paths')).toBeInTheDocument();

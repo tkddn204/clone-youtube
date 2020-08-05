@@ -1,24 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route
-} from "react-router-dom";
+} from "react-router";
 import Main from './pages/Main';
+import {ConnectedRouter} from "connected-react-router";
 
-function App() {
-  useEffect(() => {
+type AppProps = {
+  history: any
+}
 
-  }, []);
-
+function App(props: AppProps) {
   return (
-    <Router>
-      <Switch>
-        <Route path="/">
-          <Main />
-        </Route>
-      </Switch>
-    </Router>
+    <ConnectedRouter history={props.history}>
+      <div>
+        <Switch>
+          <Route path="/">
+            <Main/>
+          </Route>
+        </Switch>
+      </div>
+    </ConnectedRouter>
   );
 }
 

@@ -2,6 +2,7 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export type Size = "desktop" | "mobile"
+  export type CSSArgs = string[];
 
   export interface DefaultTheme {
     colors: {
@@ -13,7 +14,7 @@ declare module 'styled-components' {
   }
 
   export interface Media {
-    desktop: (...args: string[]) => CSSProp | undefined;
-    mobile: (...args: string[]) => CSSProp | undefined;
+    desktop: (...args: CSSArgs) => CSSProp | undefined;
+    mobile: (...args: CSSArgs) => CSSProp | undefined;
   }
 }

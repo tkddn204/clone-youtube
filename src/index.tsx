@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import GlobalStyles from './styles/global-style';
 import theme from './styles/theme';
 import App from './App';
-import { store } from './store';
-import { Provider } from 'react-redux';
+import {history, store} from './store';
+import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import { ThemeProvider } from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <GlobalStyles />
+      <GlobalStyles/>
       <ThemeProvider theme={theme}>
-        <App />
+        <App history={history}/>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,

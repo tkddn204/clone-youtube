@@ -6,6 +6,6 @@ export default {
   component: GuideIcon,
 };
 
-export const DefaultGuide = () => <div style={{ width: '24px' }}>
-  <GuideIcon />
+export const DefaultGuide = () => <div style={{width: '24px'}}>
+  <GuideIcon/>
 </div>;

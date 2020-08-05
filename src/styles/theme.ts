@@ -1,8 +1,6 @@
-import baseStyled, { css, Media, ThemedStyledInterface, DefaultTheme } from 'styled-components';
+import baseStyled, {CSSArgs, css, Media, ThemedStyledInterface, DefaultTheme} from 'styled-components';
 
-type CSSArgs = string[];
-
-const minWidths: { [key: string]: number } = {
+const minWidths: Record<string, number> = {
   desktop: 768,
   mobile: 480
 };

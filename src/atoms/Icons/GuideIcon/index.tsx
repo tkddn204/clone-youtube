@@ -5,8 +5,8 @@ const GuideIconSVG = styled.svg`
   user-select: auto;
   pointer-events: none;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
   & > g {
     user-select: auto;
   }

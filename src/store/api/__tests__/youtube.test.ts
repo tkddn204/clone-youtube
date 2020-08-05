@@ -4,7 +4,7 @@ describe('Youtube API', () => {
   test('get most popular videos', async () => {
     try {
       const res = await Youtube.getMostPopularVideos();
-      console.log(res);
+      // console.log(res);
       expect(res).toHaveReturned();
     } catch (err) {
       expect(err);

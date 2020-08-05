@@ -1,8 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import {createGlobalStyle} from 'styled-components';
+import {normalize} from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
+  ${normalize}
   * {
     box-sizing: border-box;
   }
@@ -36,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
+  }
+  button {
+    outline: none;
+    cursor: pointer;
   }
 `;
 
