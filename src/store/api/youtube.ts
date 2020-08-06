@@ -1,50 +1,44 @@
-import { google, youtube_v3 } from 'googleapis';
-
 class Youtube {
-  // Singleton
-  private static _instance: Youtube;
-  private readonly apiKey: string | undefined;
-  private youtubeApi: youtube_v3.Youtube;
-
-  private constructor() {
-    this.apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-    this.youtubeApi = google.youtube('v3');
-  }
-
-  public static get Instance() {
-    return this._instance || (this._instance = new this());
-  }
+  private readonly API_KEY: string = process.env.REACT_APP_YOUTUBE_API_KEY || '';
+  private readonly BASE_URL: string = "https://www.googleapis.com/youtube/v3";
+  private readonly SEARCH_URL: string = `${this.BASE_URL}/search`;
+  private readonly VIDEOS_URL: string = `${this.BASE_URL}/videos`;
 
   async getMostPopularVideos(count: number = 10, pageToken?: string, videoCategoryId?: string) {
+    const params: Record<string, string> = {
+      key: this.API_KEY,
+      maxResults: count.toString(),
+      chart: 'mostPopular',
+      part: 'snippet,statistics'
+    };
+    if (pageToken) params.pageToken = pageToken;
+    if (videoCategoryId) params.videoCategoryId = videoCategoryId;
+
     try {
-      const options = {
-        key: this.apiKey,
-        maxResults: count,
-        pageToken,
-        chart: 'mostPopular',
-        part: ['snippet', 'statistics'],
-        videoCategoryId
-      };
-      const res = await this.youtubeApi.videos.list(options);
-      return res.data;
+      const res = await fetch(`${this.VIDEOS_URL}?${new URLSearchParams(params)}`);
+      const data = await res.json();
+      return data;
     } catch (err) {
       return err;
     }
   }
 
-  async search(query: string) {
+  async search(query: string, count: number = 10) {
+    const params: Record<string, string> = {
+      key: this.API_KEY,
+      maxResults: count.toString(),
+      q: query,
+      part: 'snippet'
+    };
+
     try {
-      const options = {
-        key: this.apiKey,
-        q: query,
-        part: ['snippet']
-      }
-      const res = await this.youtubeApi.search.list(options);
-      return res.data;
+      const res = await fetch(`${this.SEARCH_URL}?${new URLSearchParams(params)}`);
+      const data = await res.json();
+      return data;
     } catch (err) {
       return err;
     }
   }
 }
 
-export default Youtube.Instance;
+export const youtube = new Youtube();

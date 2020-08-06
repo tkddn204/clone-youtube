@@ -4,13 +4,15 @@ import {connectRouter, routerMiddleware} from 'connected-react-router';
 import {createBrowserHistory} from 'history';
 import logger from 'redux-logger';
 import countryCodeReducer from './features/country-code-slice';
+import searchResultReducer from './features/search-result-slice';
 
 export const history = createBrowserHistory();
 
 // Store
 const rootReducer = (history: any) => combineReducers({
   router: connectRouter(history),
-  countryCode: countryCodeReducer
+  countryCode: countryCodeReducer,
+  searchResult: searchResultReducer
 });
 export const store = configureStore({
   reducer: rootReducer(history),

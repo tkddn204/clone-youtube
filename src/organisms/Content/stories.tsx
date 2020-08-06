@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '.';
+import Content from '.';
 
 export default {
-  title: 'Organism/Header',
-  component: Header,
+  title: 'Organism/Content',
+  component: Content,
 };
 
 export const DefaultHeader = () => <div>
-  <Header/>
+  <Content/>
 </div>;

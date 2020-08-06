@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import Index from '../organisms/Header';
+import Header from '../organisms/Header';
+import Content from '../organisms/Content';
 
 const MainBox = styled.div`
 `;
 
 const Main = () => <MainBox>
-  <Index/>
+  <Header />
+  <Content />
 </MainBox>
 
 export default Main;

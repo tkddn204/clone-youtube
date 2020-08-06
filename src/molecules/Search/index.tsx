@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import SearchInput from "../../atoms/SearchInput";
 import SearchButton from "../../atoms/SearchButton";
-import Youtube from '../../store/api/youtube';
+import {youtube} from '../../store/api/youtube';
+import {setSearchResult} from '../../store/features/search-result-slice'
+import {store} from "../../store";
 
 const SearchBox = styled.div`
   flex: 1;
@@ -22,8 +24,10 @@ const Search = () => {
 
   const searchVideos = (e: any) => {
     e.preventDefault();
-    console.log(query);
-    Youtube.search(query).then(console.log);
+    youtube.search(query).then(res => {
+      console.log(res);
+      store.dispatch(setSearchResult(res.items));
+    }).catch(console.error)
   }
 
   return <SearchBox role="search">
