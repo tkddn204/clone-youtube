@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfileIcon from '../../atoms/Icons/ProfileIcon';
+import { ProfileIcon } from '../../atoms/Icon';
+import IconButton from "../../atoms/Paper/IconButton";
 
-const ProfileBox = styled.div`
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  margin-right: 16px;
+const ProfileBox = styled(IconButton)`
 `;
 
 const ProfileButton = styled.button`
@@ -17,7 +14,7 @@ const ProfileButton = styled.button`
 
 const Guide = () => <ProfileBox>
   <ProfileButton>
-    <ProfileIcon/>
+    <ProfileIcon />
   </ProfileButton>
 </ProfileBox>
 

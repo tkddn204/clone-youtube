@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {
-	DefaultLogoIcon,
+	LogoIcon,
 	PremiumLogoIcon
-} from '../../atoms/Icons/LogoIcon';
+} from '../../atoms/Logo';
 import styled from 'styled-components';
 import CountryCode from "../../atoms/CountryCodeSpan";
 import {Link} from "react-router-dom";
@@ -20,7 +20,7 @@ const LogoBox = styled.div`
 const Logo: FC<LogoIconProps> = (props: LogoIconProps) =>
 	<LogoBox>
 		<Link to={"/"}>
-			{props.logoType === "premium" ? <PremiumLogoIcon/> : <DefaultLogoIcon/>}
+			{props.logoType === "premium" ? <PremiumLogoIcon/> : <LogoIcon/>}
 		</Link>
 		<CountryCode/>
 	</LogoBox>

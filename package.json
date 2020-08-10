@@ -18,6 +18,7 @@
     "@types/styled-components": "^5.1.2",
     "connected-react-router": "^6.8.0",
     "cuid": "^2.1.8",
+    "framer-motion": "^2.3.0",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -35,7 +36,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "svg-build:icon": "npx @svgr/cli -d .\\src\\atoms\\Icon\\ .\\assets\\icons --typescript --memo",
+    "svg-build:logo": "npx @svgr/cli -d .\\src\\atoms\\Logo\\ .\\assets\\logos --typescript --memo"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -54,10 +57,12 @@
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-knobs": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^5.3.19",
+    "@svgr/cli": "^5.4.0",
     "react-docgen-typescript-loader": "^3.7.2",
     "ts-jest": "^26.1.4",
     "ts-loader": "^8.0.2"

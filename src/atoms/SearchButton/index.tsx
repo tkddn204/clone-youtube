@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SearchIcon from "../Icons/SearchIcon";
+import SearchIcon from "../Icon/SearchIcon";
 // import { getAppState } from "../../store";
 
 const Button = styled.button`
@@ -31,8 +31,7 @@ const InsideButton = styled.div`
   }
 `;
 
-const SearchButton = () => <Button
-  aria-label="검색">
+const SearchButton = () => <Button aria-label="검색">
   <InsideButton>
     <SearchIcon/>
   </InsideButton>

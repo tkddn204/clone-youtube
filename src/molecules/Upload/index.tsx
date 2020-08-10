@@ -1,12 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import UploadIcon from '../../atoms/Icons/UploadIcon';
+import { UploadIcon } from '../../atoms/Icon';
+import IconButton from "../../atoms/Paper/IconButton";
 
-const UploadBox = styled.div`
-  width: 40px;
-  height: 40px;
-  padding: 8px;
-  margin-right: 16px;
+const UploadBox = styled(IconButton)`
 `;
 
 const UploadButton = styled.button`
@@ -17,7 +14,7 @@ const UploadButton = styled.button`
 
 const Guide = () => <UploadBox>
   <UploadButton>
-    <UploadIcon/>
+    <UploadIcon />
   </UploadButton>
 </UploadBox>
 

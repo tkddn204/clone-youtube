@@ -6,6 +6,6 @@ export default {
   component: Content,
 };
 
-export const DefaultHeader = () => <div>
+export const DefaultContent = () => <div>
   <Content/>
 </div>;

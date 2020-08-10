@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "유투부",
+  "name": "유투부 - 클론 사이트",
   "icons": [
     {
       "src": "favicon.ico",

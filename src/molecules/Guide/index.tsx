@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import GuideIcon from '../../atoms/Icons/GuideIcon';
+import IconButton from "../../atoms/Paper/IconButton";
+import { GuideIcon } from '../../atoms/Icon';
 
-const GuideBox = styled.div`
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+const GuideBox = styled(IconButton)`
   margin-right: 16px;
 `;
 

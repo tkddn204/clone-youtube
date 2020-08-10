@@ -24,10 +24,13 @@ const Search = () => {
 
   const searchVideos = (e: any) => {
     e.preventDefault();
-    youtube.search(query).then(res => {
-      console.log(res);
-      store.dispatch(setSearchResult(res.items));
-    }).catch(console.error)
+    const q = query.trim();
+    if (q) {
+      youtube.search(q).then(res => {
+        console.log(res);
+        store.dispatch(setSearchResult(res.items));
+      }).catch(console.error)
+    }
   }
 
   return <SearchBox role="search">
