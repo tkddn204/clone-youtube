@@ -12,10 +12,10 @@ const UploadButton = styled.button`
     padding: 0;
 `
 
-const Guide = () => <UploadBox>
+const Upload = () => <UploadBox>
   <UploadButton>
     <UploadIcon />
   </UploadButton>
 </UploadBox>
 
-export default Guide;
+export default Upload;

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const IconButtonContainer = styled.div`
   display: inline-block;
   position: relative;
-  box-sizing: border-box;
   width: 40px;
   height: 40px;
   padding: 8px;

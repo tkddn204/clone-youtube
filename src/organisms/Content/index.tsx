@@ -1,46 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import {SearchSelector} from "../../store/features/search-result-slice";
+import VideoList from "../../molecules/VideoList";
+import {getAppState, store} from "../../store";
+import {fetchPopularResult, setChannelThumbnails} from "../../store/features/popular-result-slice";
+import {youtube} from "../../store/api/youtube";
 
 const ContentBox = styled.section`
   display: flex;
+  background: #f9f9f9;
   align-items: center;
   padding: 0 16px 0 16px;
 `;
 
 const BrowseBox = styled.article`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 `;
 
 const Content = (props: any) => {
-  console.log(props);
-  const [videos, setVideos] = useState(props.videos || []);
   useEffect(() => {
-    setVideos(props.videos);
-  }, [props.videos]);
-  console.log(videos);
+    store.dispatch(fetchPopularResult())
+      .then(resultAction => {
+        if (fetchPopularResult.fulfilled.match(resultAction)) {
+          getAppState().popularResult.videos.forEach(async (video: any) => {
+            const channelId = video.snippet.channelId;
+            try {
+              const videoEtag = video.etag;
+              const channelList = await youtube.getChannelListById(channelId);
+              if (channelList) {
+                store.dispatch(setChannelThumbnails({
+                  videoEtag,
+                  thumbnails: channelList.items[0].snippet.thumbnails
+                }));
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          });
+        }
+      });
+  }, []);
 
   return <ContentBox>
     <BrowseBox>
-      {videos ? videos.map((video: any) => {
-        const thumbnail = video.snippet.thumbnails.high;
-        return <div style={{display: 'flex', flexDirection: 'row'}}>
-          <img alt="thumbnail" style={{flex:1, width: '180px'}} src={thumbnail.url} width={thumbnail.width} height={thumbnail.height} />
-          <p style={{flex:1}}>
-            <h2>{video.snippet.title}</h2>
-            <hr/>
-            <p>{video.snippet.description}</p>
-          </p></div>
-      }) : null}
+      <VideoList />
     </BrowseBox>
   </ContentBox>
 }
 
-const mapStateToProps = (state: any) => ({
-  videos: SearchSelector(state)
-});
-
-export default connect(mapStateToProps)(Content);
+export default Content;

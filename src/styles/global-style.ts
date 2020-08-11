@@ -5,13 +5,15 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
   * {
     box-sizing: border-box;
+  } 
+  html {
+    font-size: 10px;
+    font-family: 'Roboto', 'Arial', sans-serif;  
   }
   body {
     background-color: white;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+    overflow-y: scroll;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

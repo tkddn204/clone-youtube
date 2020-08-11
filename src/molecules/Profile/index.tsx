@@ -12,10 +12,10 @@ const ProfileButton = styled.button`
     padding: 0;
 `
 
-const Guide = () => <ProfileBox>
+const Profile = () => <ProfileBox>
   <ProfileButton>
     <ProfileIcon />
   </ProfileButton>
 </ProfileBox>
 
-export default Guide;
+export default Profile;

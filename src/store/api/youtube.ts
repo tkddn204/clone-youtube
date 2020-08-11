@@ -3,6 +3,22 @@ class Youtube {
   private readonly BASE_URL: string = "https://www.googleapis.com/youtube/v3";
   private readonly SEARCH_URL: string = `${this.BASE_URL}/search`;
   private readonly VIDEOS_URL: string = `${this.BASE_URL}/videos`;
+  private readonly CHANNEL_URL: string = `${this.BASE_URL}/channels`;
+
+  async getChannelListById(id: string) {
+    const params: Record<string, string> = {
+      key: this.API_KEY,
+      id,
+      part: 'snippet'
+    };
+
+    try {
+      const res = await fetch(`${this.CHANNEL_URL}?${new URLSearchParams(params)}`);
+      return await res.json();
+    } catch (err) {
+      return err;
+    }
+  }
 
   async getMostPopularVideos(count: number = 10, pageToken?: string, videoCategoryId?: string) {
     const params: Record<string, string> = {
@@ -16,8 +32,7 @@ class Youtube {
 
     try {
       const res = await fetch(`${this.VIDEOS_URL}?${new URLSearchParams(params)}`);
-      const data = await res.json();
-      return data;
+      return await res.json();
     } catch (err) {
       return err;
     }
@@ -33,8 +48,7 @@ class Youtube {
 
     try {
       const res = await fetch(`${this.SEARCH_URL}?${new URLSearchParams(params)}`);
-      const data = await res.json();
-      return data;
+      return await res.json();
     } catch (err) {
       return err;
     }

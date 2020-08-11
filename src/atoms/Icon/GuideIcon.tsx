@@ -3,8 +3,8 @@ import * as React from "react";
 function SvgGuideIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="1.5em"
-      height="1.5em"
+      width="2.4em"
+      height="2.4em"
       viewBox="0 0 24 24"
       fill="currentColor"
       {...props}

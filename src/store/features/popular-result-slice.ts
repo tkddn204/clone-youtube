@@ -1,25 +1,20 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {youtube} from "../api/youtube";
 
-interface SearchParams {
-  query: string;
-  count?: number;
-}
-
-export const fetchSearchResult = createAsyncThunk(
-  'searchResult/fetch',
-  async (params: any, queryAPI) => {
-    const { query, count } = params;
+export const fetchPopularResult = createAsyncThunk(
+  'popularResult/fetch',
+  async (params: void, queryAPI) => {
+    // const { count } = params;
     try {
-      return await youtube.search(query, count);
+      return await youtube.getMostPopularVideos();
     } catch (err) {
       console.error(err);
     }
   }
 );
 
-const SearchResultSlice = createSlice({
-  name: 'searchResult',
+const PopularResultSlice = createSlice({
+  name: 'popularResult',
   initialState: {
     videos: [],
     loading: 'idle',
@@ -39,7 +34,7 @@ const SearchResultSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(fetchSearchResult.pending, (state, action) => {
+    builder.addCase(fetchPopularResult.pending, (state, action) => {
       const { requestId } = action.meta;
       if (state.loading === 'idle') {
         state.loading = 'pending';
@@ -47,7 +42,7 @@ const SearchResultSlice = createSlice({
       }
     });
 
-    builder.addCase(fetchSearchResult.fulfilled, (state, action) => {
+    builder.addCase(fetchPopularResult.fulfilled, (state, action) => {
       const { requestId } = action.meta;
       if (state.loading === 'pending' && state.currentRequestId === requestId) {
         state.loading = 'idle';
@@ -55,7 +50,7 @@ const SearchResultSlice = createSlice({
         state.currentRequestId = '';
       }
     });
-    builder.addCase(fetchSearchResult.rejected, (state, action) => {
+    builder.addCase(fetchPopularResult.rejected, (state, action) => {
       const { requestId } = action.meta;
       if (state.loading === 'pending' && state.currentRequestId === requestId) {
         state.loading = 'idle';
@@ -65,6 +60,6 @@ const SearchResultSlice = createSlice({
   }
 });
 
-const {actions: searchResultActions, reducer: searchResultReducer} = SearchResultSlice;
-export const {setChannelThumbnails} = searchResultActions;
-export default searchResultReducer;
+const {actions: popularResultActions, reducer: popularResultReducer} = PopularResultSlice;
+export const {setChannelThumbnails} = popularResultActions;
+export default popularResultReducer;
