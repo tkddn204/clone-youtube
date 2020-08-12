@@ -14,7 +14,7 @@
 ---
 
 <p align="center">
-    <a href="https://youtube.com" rel="nofollow">Youtube]</a> 사이트 클론 프로젝트
+    <a href="https://youtube.com" rel="nofollow">Youtube</a> 사이트 클론 프로젝트
     <br>
 </p>
 
