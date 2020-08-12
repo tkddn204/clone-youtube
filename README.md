@@ -7,7 +7,6 @@
 
 <div align="center">
 
-  [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -15,8 +14,8 @@
 ---
 
 <p align="center">
-    [Youtube](https://youtube.com) 사이트 클론 프로젝트
-    <br> 
+    <a href="https://youtube.com" rel="nofollow">Youtube]</a> 사이트 클론 프로젝트
+    <br>
 </p>
 
 ## 📝 Table of Contents
