@@ -1,44 +1,63 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="./assets/logos/logo-icon.svg" alt="Project logo"></a>
+</p>
 
-## Available Scripts
+<h3 align="center">유투부</h3>
 
-In the project directory, you can run:
+<div align="center">
 
-### `yarn start`
+  [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</div>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+---
 
-### `yarn test`
+<p align="center">
+    [Youtube](https://youtube.com) 사이트 클론 프로젝트
+    <br> 
+</p>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📝 Table of Contents
+- [About](#about)
+- [Development](#development)
+- [Running the tests](#tests)
+- [Contributing](../CONTRIBUTING.md)
+- [Authors](#authors)
 
-### `yarn build`
+## 🧐 About <a name = "about"></a>
+공부 목적으로 개발 중입니다.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔨 Development <a name = "development"></a>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```console
+# dependencies 설치
+yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 개발 서버(dev server)
+yarn start
 
-### `yarn eject`
+# 스토리북(storybook)
+yarn storybook
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🔧 Running the tests <a name = "tests"></a>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```console
+yarn test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## ⛏️ Built Using <a name = "built_using"></a>
+- [create-react-app](https://create-react-app.dev/)
+- [typescript](https://www.typescriptlang.org/)
+- [redux-toolkit](https://redux-toolkit.js.org/)
+- [storybook](https://storybook.js.org/)
+- ...etc([package.json](https://github.com/tkddn204/clone-youtube/blob/master/package.json#L5))
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## ✍️ Authors <a name = "authors"></a>
+- [@tkddn204](https://github.com/tkddn204) - Idea & Initial work
 
-## Learn More
+## 🧾 License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT

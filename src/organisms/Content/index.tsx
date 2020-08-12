@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
+import {useDispatch} from "react-redux";
+import {AppDispatch, getAppState, store} from "../../store";
 import VideoList from "../../molecules/VideoList";
-import {getAppState, store} from "../../store";
-import {fetchPopularResult, setChannelThumbnails} from "../../store/features/popular-result-slice";
+import {fetchPopularResultThunk, actions} from '../../store/features/fetch-video-slice'
 import {youtube} from "../../store/api/youtube";
 
 const ContentBox = styled.section`
@@ -18,33 +19,35 @@ const BrowseBox = styled.article`
   align-items: center;
 `;
 
+const getPopularVideoList = async (dispatch: AppDispatch) => {
+  const resultAction = await dispatch(fetchPopularResultThunk({}));
+
+  if (fetchPopularResultThunk.fulfilled.match(resultAction)) {
+    for (const video of getAppState().popularResult.videos) {
+      const channelId = video.snippet.channelId;
+      try {
+        const videoEtag = video.etag;
+        const channelList = await youtube.getChannelListById(channelId);
+        store.dispatch(actions.setPopularChannelThumbnails({
+          videoEtag,
+          thumbnails: channelList.items[0].snippet.thumbnails
+        }));
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+}
+
 const Content = (props: any) => {
+  const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
-    store.dispatch(fetchPopularResult())
-      .then(resultAction => {
-        if (fetchPopularResult.fulfilled.match(resultAction)) {
-          getAppState().popularResult.videos.forEach(async (video: any) => {
-            const channelId = video.snippet.channelId;
-            try {
-              const videoEtag = video.etag;
-              const channelList = await youtube.getChannelListById(channelId);
-              if (channelList) {
-                store.dispatch(setChannelThumbnails({
-                  videoEtag,
-                  thumbnails: channelList.items[0].snippet.thumbnails
-                }));
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          });
-        }
-      });
-  }, []);
+    getPopularVideoList(dispatch);
+  }, [dispatch]);
 
   return <ContentBox>
     <BrowseBox>
-      <VideoList />
+      <VideoList/>
     </BrowseBox>
   </ContentBox>
 }

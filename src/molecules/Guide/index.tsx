@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import IconButton from "../../atoms/Paper/IconButton";
 import { GuideIcon } from '../../atoms/Icon';
 
-const GuideBox = styled(IconButton)`
+const GuideBox = styled.div`
   margin-right: 16px;
 `;
 
-const GuideButton = styled.button`
+const GuideButton = styled(IconButton)`
     width: 100%;
     height: 100%;
     padding: 0;

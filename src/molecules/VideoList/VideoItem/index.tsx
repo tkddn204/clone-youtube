@@ -137,7 +137,6 @@ const VideoItem = (props: Props) => {
   const { thumbnailSrc, title, channelName, channelThumbnailSrc, viewCount, publishedAt, isStreaming } = video;
 
   useEffect(() => {
-    console.log("업뎃", props.video);
     setVideo(props.video);
   }, [props.video]);
 

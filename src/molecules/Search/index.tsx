@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import SearchInput from "../../atoms/SearchInput";
 import SearchButton from "../../atoms/SearchButton";
-import {fetchSearchResult, setChannelThumbnails} from '../../store/features/search-result-slice'
-import {getAppState, store} from "../../store";
+import {fetchSearchResultThunk, actions} from '../../store/features/fetch-video-slice'
+import {AppDispatch, getAppState} from "../../store";
 import {youtube} from "../../store/api/youtube";
+import {useDispatch} from "react-redux";
 
 const SearchBox = styled.div`
   flex: 1;
@@ -19,6 +20,7 @@ const SearchForm = styled.form`
 `;
 
 const Search = () => {
+  const dispatch: AppDispatch = useDispatch();
   const [query, setQuery] = useState('');
   const onInputChange = (e: any) => setQuery(e.target.value.trim());
 
@@ -26,15 +28,15 @@ const Search = () => {
     e.preventDefault();
     const q = query.trim();
     if (q) {
-      const resultAction = await store.dispatch(fetchSearchResult({query:q}));
-      if (fetchSearchResult.fulfilled.match(resultAction)) {
-        getAppState().searchResult.videos.forEach(async (video: any) => {
+      const resultAction = await dispatch(fetchSearchResultThunk({query: q}));
+      if (fetchSearchResultThunk.fulfilled.match(resultAction)) {
+        for (const video of getAppState().searchResult.videos) {
           const channelId = video.snippet.channelId;
           try {
             const videoEtag = video.etag;
             const channelList = await youtube.getChannelListById(channelId);
             if (channelList) {
-              store.dispatch(setChannelThumbnails({
+              dispatch(actions.setSearchChannelThumbnails({
                 videoEtag,
                 thumbnails: channelList.items[0].snippet.thumbnails
               }));
@@ -42,7 +44,7 @@ const Search = () => {
           } catch (err) {
             console.error(err);
           }
-        });
+        }
       } else {
         // error
         // if (resultAction.payload) {

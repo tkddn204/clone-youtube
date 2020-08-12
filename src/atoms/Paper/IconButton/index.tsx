@@ -12,8 +12,8 @@ const IconButtonContainer = styled.div`
 `;
 
 interface IconContainerStyleProps {
-  width?: string | number;
-  height?: string | number;
+  width?: string;
+  height?: string;
 }
 const IconContainer = styled.div<IconContainerStyleProps>`
   display: inline-flex;

@@ -24,7 +24,7 @@ Object.keys(minWidths).reduce<Media>((acc: Media, label: string) => {
     case "desktop":
       acc.desktop = (...args: CSSArgs) =>
         css`
-          @media only screen and (min-width: ${minWidths.desktop}px) {
+          @media only screen and (min-width: ${minWidths[label]}px) {
             ${args}
           }
       `;
