@@ -3,6 +3,7 @@ import {createSelector} from "@reduxjs/toolkit";
 const getSearchResult = (state:any) => state.searchResult;
 const getPopularResult = (state:any) => state.popularResult;
 const getChannelResult = (state:any) => state.channelResult;
+const getDrawerState = (state:any) => state.drawerState;
 
 const resultNormalize = (result: any) => (result.videos.map((result: any) => ({
   thumbnailSrc: result.snippet.thumbnails.medium.url,
@@ -34,4 +35,9 @@ export const VideoSelector = createSelector(
   (search, popular) => ({
       search, popular
   })
+);
+
+export const DrawerSelector = createSelector(
+  [getDrawerState],
+  drawerState => drawerState
 );

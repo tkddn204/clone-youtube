@@ -5,11 +5,14 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       use: [{
         loader: require.resolve('ts-loader'),
+        options: {
+          configFile: './tsconfig.json'
+        }
       },
         // {
         //   loader: require.resolve('react-docgen-typescript-loader'),
         // },
-      ],
+      ]
     });
     config.resolve.extensions.push('.ts', '.tsx');
     return config;

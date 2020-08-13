@@ -5,6 +5,7 @@ import logger from 'redux-logger';
 import countryCodeReducer from './features/country-code-slice';
 import fetchVideoReducer from './features/fetch-video-slice';
 import channelResultReducer from './features/channel-result-slice';
+import drawerReducer from "./features/drawer-slice";
 
 export const history = createBrowserHistory();
 
@@ -14,7 +15,8 @@ const rootReducer = (history: any) => combineReducers({
   countryCode: countryCodeReducer,
   searchResult: fetchVideoReducer.searchResultReducer,
   popularResult: fetchVideoReducer.popularResultReducer,
-  channelResult: channelResultReducer
+  channelResult: channelResultReducer,
+  drawerState: drawerReducer
 });
 export const store = configureStore({
   reducer: rootReducer(history),

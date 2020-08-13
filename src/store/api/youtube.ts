@@ -1,4 +1,4 @@
-export namespace Youtube {
+export declare namespace Youtube {
   export namespace Params {
     export interface Channel extends Record<string, string> {
       part: string;

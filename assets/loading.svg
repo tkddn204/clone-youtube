@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <g id="ring" style="fill:#888">
+        <defs>
+            <circle id="dot" cx="4" cy="4" r="2"></circle>
+        </defs>
+        <use x="7" y="1" style="fill-opacity: 0.3" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dot"></use>
+        <use x="11.152" y="2.895" style="fill-opacity: 0.4" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xlink:href="#dot"></use>
+        <use x="13" y="7" style="fill-opacity: 0.5" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dot"></use>
+        <use x="11.152" y="11.152" style="fill-opacity: 0.6" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xlink:href="#dot"></use>
+        <use x="7" y="13" style="fill-opacity: 0.7" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dot"></use>
+        <use x="2.895" y="11.152" style="fill-opacity: 0.8" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xlink:href="#dot"></use>
+        <use x="1" y="7" style="fill-opacity: 0.9" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#dot"></use>
+        <use x="2.895" y="2.895" style="fill-opacity: 1" xmlns:xlink="http://www.w3.org/1999/xlink"
+             xlink:href="#dot"></use>
+    </g>
+</svg>

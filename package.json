@@ -38,8 +38,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "svg-build:icon": "npx @svgr/cli -d .\\src\\atoms\\Icon\\ .\\assets\\icons --typescript --memo",
-    "svg-build:logo": "npx @svgr/cli -d .\\src\\atoms\\Logo\\ .\\assets\\logos --typescript --memo"
+    "svg-build:icon": "npx @svgr/cli -d .\\src\\atoms\\Icon\\ .\\assets\\icons",
+    "svg-build:logo": "npx @svgr/cli -d .\\src\\atoms\\Logo\\ .\\assets\\logos"
   },
   "eslintConfig": {
     "extends": "react-app"

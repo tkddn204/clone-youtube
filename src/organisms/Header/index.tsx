@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Guide from '../../molecules/Guide';
-import Logo from '../../molecules/Logo';
+import HeaderLogo from '../../molecules/HeaderLogo';
 import Search from "../../molecules/Search";
-import Upload from "../../molecules/Upload";
-import Profile from "../../molecules/Profile";
+import IconButton from "../../atoms/Paper/IconButton";
+import {ProfileIcon, UploadIcon} from "../../atoms/Icon";
 
 const HeaderBox = styled.header`
   display: flex;
@@ -37,15 +36,18 @@ const RightBox = styled(FlexBox)`
 
 const Header = () => <HeaderBox>
   <LeftBox>
-    <Guide/>
-    <Logo/>
+    <HeaderLogo />
   </LeftBox>
   <MiddleBox>
     <Search />
   </MiddleBox>
   <RightBox>
-    <Upload />
-    <Profile />
+    <IconButton>
+      <UploadIcon />
+    </IconButton>
+    <IconButton>
+      <ProfileIcon />
+    </IconButton>
   </RightBox>
 </HeaderBox>
 

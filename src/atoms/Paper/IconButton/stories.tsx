@@ -3,7 +3,7 @@ import IconButton from '.';
 import {GuideIcon} from "../../Icon";
 
 export default {
-  title: 'Atom/IconButton',
+  title: 'Atom/Paper/IconButton',
   component: IconButton,
 };
 

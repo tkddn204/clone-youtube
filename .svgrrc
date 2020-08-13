@@ -1,0 +1,8 @@
+{
+  icon: true,
+  typescript: true,
+  memo: true,
+  replaceAttrValues: {
+    "1em": "100%"
+  }
+}
