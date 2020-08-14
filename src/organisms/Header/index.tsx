@@ -42,12 +42,8 @@ const Header = () => <HeaderBox>
     <Search />
   </MiddleBox>
   <RightBox>
-    <IconButton>
-      <UploadIcon />
-    </IconButton>
-    <IconButton>
-      <ProfileIcon />
-    </IconButton>
+    <IconButton icon={UploadIcon} />
+    <IconButton icon={ProfileIcon} />
   </RightBox>
 </HeaderBox>
 

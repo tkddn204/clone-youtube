@@ -7,6 +7,4 @@ export default {
   component: IconButton,
 };
 
-export const DefaultIconButton = () => <IconButton>
-  <GuideIcon />
-</IconButton>;
+export const DefaultIconButton = () => <IconButton icon={GuideIcon}/>

@@ -40,9 +40,7 @@ const Logo: FC<LogoIconProps> = (props: LogoIconProps) => {
 
   return <HeaderLogoBox>
     <GuideIconBox onClick={onClickGuideButton}>
-      <IconButton>
-        <GuideIcon/>
-      </IconButton>
+      <IconButton icon={GuideIcon} />
     </GuideIconBox>
     <LogoBox>
       <Link to={"/"}>

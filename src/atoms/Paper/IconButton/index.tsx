@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ElementType, useState} from 'react';
 import { motion } from "framer-motion";
 import styled from 'styled-components';
 
@@ -12,14 +12,14 @@ const IconButtonContainer = styled.div`
 `;
 
 interface IconContainerStyleProps {
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
 }
 const IconContainer = styled.div<IconContainerStyleProps>`
   display: inline-flex;
   position: relative;
-  width: ${props => props.width ? props.width : '100%'};
-  height: ${props => props.height ? props.height : '100%'};
+  width: ${props => props.width ? `"${props.width}px"` : '40px'};
+  height: ${props => props.height ? `"${props.height}px"` : '40px'};
   align-items: center;
   justify-content: center;
   vertical-align: middle;
@@ -47,21 +47,20 @@ const Ripple = styled(motion.div)`
   pointer-events: none;
 `;
 
-interface IconButtonProps {
-  children?: ReactNode;
-  width?: string | number;
-  height?: string | number;
+export interface IconButtonProps extends IconContainerStyleProps {
+  icon: ElementType;
+  color?: string;
 }
 
-/**
- *
- * @param props children must be "Icon"!!!
- * @constructor
- */
 const IconButton = (props: IconButtonProps) => {
+  const { icon: Icon, color, width, height } = props;
   const [isTapping, setIsTapping] = useState(false);
   const tapped = () => setIsTapping(true);
   const notTapped = () => setIsTapping(false);
+
+  if (!Icon) {
+    throw new Error("Icon was not specified!!");
+  }
 
   const ripple = {
     normal: { opacity: 0, velocity: 50 },
@@ -73,8 +72,8 @@ const IconButton = (props: IconButtonProps) => {
       onMouseDown={tapped}
       onMouseUp={notTapped}
       onMouseLeave={notTapped}>
-      <IconContainer>
-        {props.children}
+      <IconContainer width={width} height={height}>
+        <Icon fill={color}/>
       </IconContainer>
     </Button>
     <Ripple

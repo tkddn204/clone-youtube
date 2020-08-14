@@ -4,6 +4,13 @@ import {MemoryRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 import {store} from "../src/store";
 import GlobalStyle from "../src/styles/global-style";
+import {configureActions} from "@storybook/addon-actions";
+
+// addon-actions
+configureActions({
+  depth: 3,
+  limit: 20
+})
 
 // global style
 addDecorator(storyFn => <Fragment>

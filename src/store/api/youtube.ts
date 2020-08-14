@@ -83,6 +83,7 @@ export declare namespace Youtube {
       defaultLanguage: string;
       localized: Localized;
       defaultAudioLanguage: string;
+      channelThumbnails?: Thumbnails;
     }
 
     export interface Statistics {

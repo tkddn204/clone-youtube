@@ -6,7 +6,7 @@ import VideoList from "../../molecules/VideoList";
 import {fetchPopularResultThunk, actions} from '../../store/features/fetch-video-slice'
 import {youtube} from "../../store/api/youtube";
 
-const ContentBox = styled.section`
+const PopularVideoBox = styled.section`
   display: flex;
   background: #f9f9f9;
   align-items: center;
@@ -45,11 +45,11 @@ const Content = (props: any) => {
     getPopularVideoList(dispatch);
   }, [dispatch]);
 
-  return <ContentBox>
+  return <PopularVideoBox>
     <BrowseBox>
       <VideoList/>
     </BrowseBox>
-  </ContentBox>
+  </PopularVideoBox>
 }
 
 export default Content;
