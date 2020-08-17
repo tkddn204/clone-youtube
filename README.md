@@ -30,18 +30,31 @@
 
 ## 🔨 Development <a name = "development"></a>
 
-```console
-# dependencies 설치
-yarn
+1. `.env_example`의 이름을 `.env`로 변경해주세요.
+2. youtube data api(v3)의 **api key**를 `.env`의 `REACT_APP_YOUTUBE_API_KEY`에 입력해주세요.
 
-# 개발 서버(dev server)
-yarn start
+  ```console
+  cp .env_example .env
+  # .env
+  # REACT_APP_YOUTUBE_API_KEY=API키입력
+  ```
 
-# 스토리북(storybook)
-yarn storybook
-```
+3. 의존성 설치 후 개발 서버나 스토리북을 켜서 개발해주면 됩니다.
+
+  ```console
+  # dependencies 설치
+  yarn
+
+  # 개발 서버(dev server)
+  yarn start
+
+  # 스토리북(storybook)
+  yarn storybook
+  ```
 
 ## 🔧 Running the tests <a name = "tests"></a>
+
+(개발중)
 
 ```console
 yarn test
