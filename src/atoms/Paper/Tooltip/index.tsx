@@ -1,14 +1,28 @@
-import React, {ReactNode, useEffect, useState} from 'react';
+import React, {ReactNode, useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {motion} from "framer-motion";
+import {connect} from "react-redux";
 
 const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ChildContainer = styled.div`
+`;
+
+interface TextContainerProps {
+  left: number;
+  top: number;
+}
+
+const TextContainer = styled.div<TextContainerProps>`
   display: block;
   position: absolute;
-  left: 0;
-  right: auto;
-  top: 44px;
-  bottom: auto;
+  left: ${props => !!props.left ? `${props.left}px` : "0px"};
+  //right: auto;
+  top: ${props => !!props.top ? `${props.top}px` : "44px"};
+  //bottom: auto;
   white-space: nowrap;
   outline: none;
   z-index: 1000;
@@ -30,34 +44,74 @@ const TextContent = styled(motion.div)`
 
 interface TooltipProps {
   children?: ReactNode;
-  isVisible?: boolean;
+  content: string;
+  screenSize: { width: number, height: number };
 }
 
 const Tooltip = (props: TooltipProps) => {
-  const [isVisible, setVisible] = useState(props.isVisible);
+  const containerBoxRef = useRef<HTMLDivElement>(null);
+  const textBoxRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setVisible] = useState(false);
+  const [textPosition, setTextPosition] = useState({ left: 0, top: 0 });
+
 
   const show = () => setVisible(true);
   const hide = () => setVisible(false);
 
   useEffect(() => {
-    setVisible(props.isVisible);
-  }, [props.isVisible]);
+
+    const calculateLeft = (screenWidth: number, containerBoxRect: DOMRect, textBoxRect: DOMRect): number => {
+      const middle = (containerBoxRect.left + containerBoxRect.right) / 2;
+      let left = middle - (textBoxRect.width / 2);
+      if (left + textBoxRect.width > screenWidth - 16) {
+        left = screenWidth - textBoxRect.width - 24; // padding
+      } else if (left < 0) {
+        left = 24; // padding
+      }
+      return left;
+    }
+
+    const calculateTop = (screenWidth: number, containerBoxRect: DOMRect, textBoxRect: DOMRect): number => {
+      return containerBoxRect.bottom + textBoxRect.height > screenWidth ? -44 : 44;
+    }
+
+    const getTextPosition = () => {
+      const { width: screenWidth, height: screenHeight } = props.screenSize;
+      const containerBoxRect = (containerBoxRef.current as HTMLDivElement).getBoundingClientRect();
+      const textBoxRect = (textBoxRef.current as HTMLDivElement).getBoundingClientRect();
+      const left = calculateLeft(screenWidth, containerBoxRect, textBoxRect);
+      const top = calculateTop(screenHeight, containerBoxRect, textBoxRect);
+      return { left, top };
+    };
+
+    const textPosition = getTextPosition();
+    setTextPosition(textPosition);
+  }, [props.screenSize]);
 
   const variants = {
     visible: {opacity: 1},
     hidden: {opacity: 0}
   }
 
-  return <Container onMouseUp={show} onMouseLeave={hide}>
-    <TextContent
-      initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      transition={{ delay: 0.5 }}
-      variants={variants}
-    >
+  return <Container>
+    <ChildContainer ref={containerBoxRef} onMouseEnter={show} onMouseLeave={hide}>
       {props.children}
-    </TextContent>
-  </Container>
+    </ChildContainer>
+    <TextContainer ref={textBoxRef} left={textPosition.left} top={textPosition.top}>
+      <TextContent
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        transition={{ delay: 0.2 }}
+        variants={variants}
+      >
+        {props.content}
+      </TextContent>
+    </TextContainer>
+  </Container>;
 }
 
-export default Tooltip;
+const mapStateToProps = (state: any) => ({
+  screenSize: state.screenSize
+});
+
+export default connect(mapStateToProps)(Tooltip);

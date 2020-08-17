@@ -39,10 +39,10 @@ const getPopularVideoList = async (dispatch: AppDispatch) => {
   }
 }
 
-const Content = (props: any) => {
+const PopularVideoList = (props: any) => {
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
-    getPopularVideoList(dispatch);
+    // getPopularVideoList(dispatch);
   }, [dispatch]);
 
   return <PopularVideoBox>
@@ -52,4 +52,4 @@ const Content = (props: any) => {
   </PopularVideoBox>
 }
 
-export default Content;
+export default PopularVideoList;

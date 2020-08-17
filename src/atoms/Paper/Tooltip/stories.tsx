@@ -1,9 +1,13 @@
 import React from 'react';
-import TooltipInput from '.';
+import Tooltip from '.';
+import IconButton from "../IconButton";
+import {ProfileIcon} from "../../Icon";
 
 export default {
-  title: 'Atom/TooltipInput',
-  component: TooltipInput,
+  title: 'Atom/Tooltip',
+  component: Tooltip,
 };
 
-export const DefaultTooltipInput = () => <TooltipInput />;
+export const DefaultTooltip = () => <Tooltip content="프로필">
+  <IconButton icon={ProfileIcon} />
+</Tooltip>

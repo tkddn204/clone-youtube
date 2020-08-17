@@ -11,17 +11,19 @@ const IconButtonContainer = styled.div`
   color: #606060;
 `;
 
-interface IconContainerStyleProps {
-  width?: number;
-  height?: number;
+export interface IconContainerProps {
+  margin?: string;
+  color?: string;
 }
-const IconContainer = styled.div<IconContainerStyleProps>`
+
+const IconContainer = styled.div<IconContainerProps>`
   display: inline-flex;
-  position: relative;
-  width: ${props => props.width ? `"${props.width}px"` : '40px'};
-  height: ${props => props.height ? `"${props.height}px"` : '40px'};
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: ${props => !!props.margin ? `${props.margin}` : '0'};
+  color: ${props => !!props.color ? props.color : 'currentColor'};
   vertical-align: middle;
 `;
 
@@ -47,13 +49,13 @@ const Ripple = styled(motion.div)`
   pointer-events: none;
 `;
 
-export interface IconButtonProps extends IconContainerStyleProps {
+export interface IconButtonProps {
   icon: ElementType;
-  color?: string;
+  iconStyle?: IconContainerProps;
 }
 
 const IconButton = (props: IconButtonProps) => {
-  const { icon: Icon, color, width, height } = props;
+  const { icon: Icon, iconStyle } = props;
   const [isTapping, setIsTapping] = useState(false);
   const tapped = () => setIsTapping(true);
   const notTapped = () => setIsTapping(false);
@@ -72,8 +74,8 @@ const IconButton = (props: IconButtonProps) => {
       onMouseDown={tapped}
       onMouseUp={notTapped}
       onMouseLeave={notTapped}>
-      <IconContainer width={width} height={height}>
-        <Icon fill={color}/>
+      <IconContainer {...iconStyle}>
+        <Icon/>
       </IconContainer>
     </Button>
     <Ripple

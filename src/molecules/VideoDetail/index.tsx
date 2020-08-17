@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {NormalizedYoutubeVideoInfo} from "../../store/selectors";
 import ToggleButton from "../../atoms/Paper/ToggleButton";
-import {ThumbUpIcon} from "../../atoms/Icon";
+import {ThumbUpIcon, ShareIcon, SaveListIcon, HorizonMenuIcon, ThumbDownIcon} from "../../atoms/Icon";
+import Tooltip from "../../atoms/Paper/Tooltip";
+import strings  from "../../datas/strings";
+import Button from "../../atoms/Paper/Button";
+import IconButton from "../../atoms/Paper/IconButton";
 
 const VideoDetailBox = styled.div`
   overflow: hidden;
@@ -66,8 +70,12 @@ const VideoInfoText = styled.div<VideoInfoTextProps>`
 `;
 
 const MenuContainer = styled(FlexRowBox)`
+  > * {
+    &:not(:first-child) {
+      margin: 0 0 0 8px;
+    }
+  }
 `;
-
 
 export interface VideoDetailProps extends NormalizedYoutubeVideoInfo {
   tags?: ReadonlyArray<string>;
@@ -75,6 +83,15 @@ export interface VideoDetailProps extends NormalizedYoutubeVideoInfo {
 
 const VideoDetail = (props: VideoDetailProps) => {
   const { tags, title, viewCount, publishedAt } = props;
+
+  const normalColor = "#606060";
+  const iconStyle = {
+    color: normalColor,
+    margin: "8px"
+  }
+  const titleStyle = {
+    color: normalColor
+  }
 
   return <VideoDetailBox>
     {!!tags ?
@@ -95,12 +112,25 @@ const VideoDetail = (props: VideoDetailProps) => {
         </VideoInfoText>
       </VideoInfoTextBox>
       <MenuContainer>
-        <ToggleButton margin={"0 16px"} icon={ThumbUpIcon}>
-          좋아요
-        </ToggleButton>
-        <ToggleButton margin={"0 16px"} icon={ThumbUpIcon}>
-          싫어요
-        </ToggleButton>
+        <Tooltip content={strings.tooltip.good}>
+          <ToggleButton icon={ThumbUpIcon}>
+            좋아요
+          </ToggleButton>
+        </Tooltip>
+        <Tooltip content={strings.tooltip.bad}>
+          <ToggleButton icon={ThumbDownIcon}>
+            싫어요
+          </ToggleButton>
+        </Tooltip>
+        <Tooltip content={strings.tooltip.share}>
+          <Button icon={ShareIcon} iconStyle={iconStyle} titleStyle={titleStyle}>
+            공유
+          </Button>
+        </Tooltip>
+        <Button icon={SaveListIcon} iconStyle={iconStyle} titleStyle={titleStyle}>
+          저장
+        </Button>
+        <IconButton icon={HorizonMenuIcon} iconStyle={{ color: iconStyle.color }}/>
       </MenuContainer>
     </VideoInfoContainer>
   </VideoDetailBox>

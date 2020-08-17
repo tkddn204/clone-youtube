@@ -4,6 +4,8 @@ import HeaderLogo from '../../molecules/HeaderLogo';
 import Search from "../../molecules/Search";
 import IconButton from "../../atoms/Paper/IconButton";
 import {ProfileIcon, UploadIcon} from "../../atoms/Icon";
+import Tooltip from "../../atoms/Paper/Tooltip";
+import strings from "../../datas/strings";
 
 const HeaderBox = styled.header`
   display: flex;
@@ -42,7 +44,9 @@ const Header = () => <HeaderBox>
     <Search />
   </MiddleBox>
   <RightBox>
-    <IconButton icon={UploadIcon} />
+    <Tooltip content={strings.tooltip.upload}>
+      <IconButton icon={UploadIcon} />
+    </Tooltip>
     <IconButton icon={ProfileIcon} />
   </RightBox>
 </HeaderBox>

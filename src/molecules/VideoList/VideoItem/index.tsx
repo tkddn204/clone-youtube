@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import IconButton from "../../../atoms/Paper/IconButton";
+import {VerticalMenuIcon} from "../../../atoms/Icon";
 
 const Container = styled.div`
   width: 249px;
@@ -165,6 +167,7 @@ const VideoItem = (props: Props) => {
             </DetailMetaContent>
           </DetailMeta>
         </DetailMetaContainer>
+        <IconButton icon={VerticalMenuIcon} />
       </DetailContainer>
       <DetailStreamingContainer visibility={isStreaming ? "visible" : "hidden"}>
         <DetailStreamingSpan>

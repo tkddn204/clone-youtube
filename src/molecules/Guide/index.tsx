@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import styled from 'styled-components';
 import HeaderLogo from "../HeaderLogo";
-import GuideButton from "../../atoms/Paper/GuideButton";
-import {FireIcon, HistoryIcon, HomeIcon, StoreIcon, SubscribesIcon, YoutubeIcon} from "../../atoms/Icon";
+import Button from "../../atoms/Paper/Button";
+import sectionList from "./sectionList";
 
 const GuideBox = styled.div`
   margin-right: 16px;
@@ -41,48 +42,23 @@ const GuideSectionTitle = styled.h3`
   text-transform: uppercase;
 `;
 
-const sectionList = [
-  {
-    title: '',
-    items: [{
-      link: "/",
-      icon: <HomeIcon/>,
-      title: '홈'
-    }, {
-      link: "/",
-      icon: <FireIcon/>,
-      title: '인기'
-    }, {
-      link: "/",
-      icon: <SubscribesIcon/>,
-      title: "구독"
-    }, {
-      link: "/",
-      icon: <YoutubeIcon/>,
-      title: "Originals"
-    }]
-  },
-  {
-    title: '',
-    items: [{
-      link: "/",
-      icon: <StoreIcon/>,
-      title: "보관함"
-    }, {
-      link: "/",
-      icon: <HistoryIcon/>,
-      title: "시청 기록"
-    }]
-  },
-  {
-    title: '구독',
-    items: []
-  },
-  {
-    title: 'youtube 더보기',
-    items: []
+const GuideButton = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  min-height: 40px;
+  
+  &:hover {
+    background: #0000000d;
   }
-];
+  
+  &:active {
+    background: #0000001a;
+  }
+`;
 
 const Guide = () => <GuideBox>
   <GuideHeader>
@@ -94,11 +70,16 @@ const Guide = () => <GuideBox>
         <GuideSection>
           {!!section.title ? <GuideSectionTitle>{section.title}</GuideSectionTitle> : null}
           {section.items.map((item) =>
-            <GuideButton
-              link={item.link}
-              icon={item.icon}
-              title={item.title}
-            />)}
+            <Link to={item.link || "/"}>
+              <GuideButton>
+                <Button icon={item.icon} iconStyle={{
+                  color: "#606060",
+                  margin: "0 24px 0 0"
+                }}>
+                  {item.title}
+                </Button>
+              </GuideButton>
+            </Link>)}
         </GuideSection>
       )};
     </GuideSections>

@@ -6,6 +6,8 @@ import {fetchSearchResultThunk, actions} from '../../store/features/fetch-video-
 import {AppDispatch, getAppState} from "../../store";
 import {youtube} from "../../store/api/youtube";
 import {useDispatch} from "react-redux";
+import Tooltip from "../../atoms/Paper/Tooltip";
+import strings from "../../datas/strings";
 
 const SearchBox = styled.div`
   flex: 1;
@@ -59,7 +61,9 @@ const Search = () => {
   return <SearchBox role="search">
     <SearchForm onSubmit={searchVideos}>
       <SearchInput onChange={onInputChange}/>
-      <SearchButton/>
+      <Tooltip content={strings.tooltip.search}>
+        <SearchButton/>
+      </Tooltip>
     </SearchForm>
   </SearchBox>
 }

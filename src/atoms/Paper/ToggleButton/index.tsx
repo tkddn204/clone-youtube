@@ -1,4 +1,4 @@
-import React, {ElementType, ReactText, useEffect, useState} from 'react';
+import React, {ReactText, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import IconButton, {IconButtonProps} from "../IconButton";
 
@@ -14,7 +14,6 @@ const ToggleButtonContainer = styled.div<ToggleButtonContainerProps>`
   line-height: 1.7rem;
   letter-spacing: 0.007px;
   color: #909090;
-  margin: ${props => !!props.margin ? props.margin : "0"}
   text-transform: uppercase;
   align-items: center;
   justify-content: center;
@@ -27,23 +26,27 @@ const ToggleButtonText = styled.span`
 
 interface ToggleButtonProps extends IconButtonProps {
   children?: ReactText;
-  margin?: string;
   isOn?: boolean;
+  width?: number;
+  height?: number;
 }
 
 const ToggleButton = (props: ToggleButtonProps) => {
-  const { icon: Icon, margin, width, height } = props;
+  const { icon: Icon} = props;
 
   const [isOn, setOn] = useState(props.isOn);
 
-  const color = isOn ? "#065fd4" : !!props.color ? props.color : "#909090";
+  const color = isOn ? "#065fd4" : "#909090";
+  const iconStyle = {
+    color
+  };
 
   useEffect(() => {
     setOn(props.isOn);
   }, [props.isOn]);
 
-  return <ToggleButtonContainer margin={margin}>
-    <IconButton icon={Icon} color={color} width={width ? width : 36} height={height ? height : 36} />
+  return <ToggleButtonContainer>
+    <IconButton icon={Icon} iconStyle={iconStyle} />
     <ToggleButtonText color={color}>
       {props.children}
     </ToggleButtonText>
