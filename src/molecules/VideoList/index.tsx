@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {connect} from "react-redux";
-import {VideoSelector} from "../../store/selectors";
+import {VideoListSelector} from "../../store/selectors";
 import VideoItem from "./VideoItem";
 
 const Container = styled.div`
@@ -28,7 +28,7 @@ const VideoList = (props: any) => {
 }
 
 const mapStateToProps = (state: any) => ({
-  videos: VideoSelector(state)
+  videos: VideoListSelector(state)
 });
 
 export default connect(mapStateToProps)(VideoList);

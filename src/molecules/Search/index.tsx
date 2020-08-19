@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import SearchInput from "../../atoms/SearchInput";
 import SearchButton from "../../atoms/SearchButton";
-import {fetchSearchResultThunk, actions} from '../../store/features/fetch-video-slice'
+import {fetchSearchResultThunk, actions} from '../../store/features/fetch-youtube-video-slice'
 import {AppDispatch, getAppState} from "../../store";
 import {youtube} from "../../store/api/youtube";
 import {useDispatch} from "react-redux";

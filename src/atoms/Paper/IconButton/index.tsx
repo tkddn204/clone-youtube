@@ -2,12 +2,18 @@ import React, {ElementType, useState} from 'react';
 import { motion } from "framer-motion";
 import styled from 'styled-components';
 
-const IconButtonContainer = styled.div`
+interface IconButtonContainerProps {
+  width?: number;
+  height?: number;
+  padding?: number;
+}
+
+const IconButtonContainer = styled.div<IconButtonContainerProps>`
   display: inline-block;
   position: relative;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  width: ${props => !!props.width ? `${props.width}px` : "40px"};
+  height: ${props => !!props.height ? `${props.height}px` : "40px"};
+  padding: ${props => !!props.padding ? `${props.padding}px` : "8px"};
   color: #606060;
 `;
 
@@ -51,11 +57,13 @@ const Ripple = styled(motion.div)`
 
 export interface IconButtonProps {
   icon: ElementType;
+  isRipple?: boolean;
+  containerStyle?: IconButtonContainerProps;
   iconStyle?: IconContainerProps;
 }
 
 const IconButton = (props: IconButtonProps) => {
-  const { icon: Icon, iconStyle } = props;
+  const { icon: Icon, isRipple, containerStyle, iconStyle } = props;
   const [isTapping, setIsTapping] = useState(false);
   const tapped = () => setIsTapping(true);
   const notTapped = () => setIsTapping(false);
@@ -69,7 +77,7 @@ const IconButton = (props: IconButtonProps) => {
     tapped: { opacity: 0.5, velocity: 50 }
   }
 
-  return <IconButtonContainer>
+  return <IconButtonContainer {...containerStyle}>
     <Button
       onMouseDown={tapped}
       onMouseUp={notTapped}
@@ -78,11 +86,11 @@ const IconButton = (props: IconButtonProps) => {
         <Icon/>
       </IconContainer>
     </Button>
-    <Ripple
+    {isRipple === false ? null : <Ripple
       initial="normal"
       animate={isTapping ? "tapped" : "normal"}
       variants={ripple}
-    />
+    />}
   </IconButtonContainer>
 };
 

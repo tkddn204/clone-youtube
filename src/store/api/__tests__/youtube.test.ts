@@ -19,6 +19,16 @@ describe('Youtube API', () => {
     }
   });
 
+  test('get search list : "video" by id',  async () => {
+    try {
+      const res = await youtube.getVideoListById("vquKB01bKag");
+      console.log(JSON.stringify(res));
+      // expect(res).toThrow(new Error());
+    } catch (err) {
+      expect(err).toEqual(1);
+    }
+  });
+
   test('get search list : "channel" by id',  async () => {
     try {
       const res = await youtube.getChannelListById("UCY1kMZp36IQSyNx_9h4mpCg");

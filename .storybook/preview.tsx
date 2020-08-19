@@ -5,8 +5,14 @@ import {Provider} from "react-redux";
 import {store} from "../src/store";
 import GlobalStyle from "../src/styles/global-style";
 import {configureActions} from "@storybook/addon-actions";
+import {useResize} from "../src/utils";
 
-// addon-actions
+// msw server
+if (typeof global.process === 'undefined') {
+  import('../src/mocks/browser').then(({ worker }) => {worker.start()});
+}
+
+// addon-actions config
 configureActions({
   depth: 3,
   limit: 20
@@ -19,9 +25,15 @@ addDecorator(storyFn => <Fragment>
 </Fragment>);
 
 // redux
-addDecorator(storyFn => <Provider store={store}>
-  {storyFn()}
-</Provider>);
+addDecorator(storyFn => {
+  const WithResize = (): any => {
+    useResize();
+    return storyFn();
+  }
+  return <Provider store={store}>
+    <WithResize />
+  </Provider>;
+});
 
 // react-router
 addDecorator(storyFn => <MemoryRouter>

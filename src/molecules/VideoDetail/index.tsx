@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import {NormalizedYoutubeVideoInfo} from "../../store/selectors";
+import {VideoInfo} from "../../store/features/video-player-slice";
 import ToggleButton from "../../atoms/Paper/ToggleButton";
 import {ThumbUpIcon, ShareIcon, SaveListIcon, HorizonMenuIcon, ThumbDownIcon} from "../../atoms/Icon";
 import Tooltip from "../../atoms/Paper/Tooltip";
@@ -77,13 +77,12 @@ const MenuContainer = styled(FlexRowBox)`
   }
 `;
 
-export interface VideoDetailProps extends NormalizedYoutubeVideoInfo {
-  tags?: ReadonlyArray<string>;
+export interface VideoDetailProps {
+  video: VideoInfo
 }
 
 const VideoDetail = (props: VideoDetailProps) => {
-  const { tags, title, viewCount, publishedAt } = props;
-
+  const { tags, title, viewCount, publishedAt } = props.video;
   const normalColor = "#606060";
   const iconStyle = {
     color: normalColor,

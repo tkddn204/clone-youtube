@@ -1,6 +1,7 @@
 import {createSelector} from "@reduxjs/toolkit";
 import {Youtube} from "../api/youtube";
 
+const getVideoResult = (state: any) => state.videoResult;
 const getSearchResult = (state: any) => state.searchResult;
 const getPopularResult = (state: any) => state.popularResult;
 const getChannelResult = (state: any) => state.channelResult;
@@ -17,16 +18,23 @@ export interface NormalizedYoutubeVideoInfo {
   isStreaming: boolean
 }
 
-const resultNormalize = (result: any) => (result.videos.map((result: Youtube.Response.VideoItem): NormalizedYoutubeVideoInfo => ({
+const normalize = (result: Youtube.Response.VideoItem): NormalizedYoutubeVideoInfo => ({
   id: result.id,
-  thumbnailSrc: result.snippet.thumbnails.medium.url,
+  thumbnailSrc: result.snippet.thumbnails.medium ? result.snippet.thumbnails.medium.url : result.snippet.thumbnails.default.url,
   title: result.snippet.title,
   channelName: result.snippet.channelTitle,
   channelThumbnailSrc: result.snippet.channelThumbnails?.default.url,
   viewCount: result.statistics?.viewCount,
-  publishedAt: result.snippet.publishedAt,
+  publishedAt: new Date(result.snippet.publishedAt),
   isStreaming: false
-})));
+});
+
+const resultNormalize = (result: any) => result.videos.map(normalize);
+
+export const VideoSelector = createSelector(
+  [getVideoResult],
+  resultNormalize
+)
 
 export const SearchSelector = createSelector(
   [getSearchResult],
@@ -43,8 +51,8 @@ export const ChannelSelector = createSelector(
   channelResult => channelResult.channel
 );
 
-export const VideoSelector = createSelector(
-  SearchSelector, PopularSelector,
+export const VideoListSelector = createSelector(
+  [SearchSelector, PopularSelector],
   (search, popular) => ({
     search, popular
   })

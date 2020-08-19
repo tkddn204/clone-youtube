@@ -66,7 +66,7 @@ const Tooltip = (props: TooltipProps) => {
       if (left + textBoxRect.width > screenWidth - 16) {
         left = screenWidth - textBoxRect.width - 24; // padding
       } else if (left < 0) {
-        left = 24; // padding
+        left = 8; // padding
       }
       return left;
     }

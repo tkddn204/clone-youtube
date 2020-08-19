@@ -1,23 +1,27 @@
 export declare namespace Youtube {
   export namespace Params {
-    export interface Channel extends Record<string, string> {
-      part: string;
+
+    interface Base extends Record<string, string> {
       key: string; // API key
+      part: string;
+    }
+
+    export interface Channel extends Base {
       id: string; // Channel id
     }
 
-    export interface Video extends Record<string, string> {
-      part: string;
-      key: string; // API key
-      maxResults: string, // item counts
-      chart: string
+    export interface VideoById extends Base {
+      id: string; // Video id
     }
 
-    export interface Search extends Record<string, string> {
-      part: string;
-      key: string; // API key
+    export interface VideoByChart extends Base {
+      chart: string
       maxResults: string, // item counts
+    }
+
+    export interface Search extends Base {
       q: string; // query
+      maxResults: string, // item counts
     }
   }
 
@@ -139,6 +143,12 @@ export declare namespace Youtube {
   }
 }
 
+// external layers
+
+export interface getVideoListByIdParams {
+  id: string;
+}
+
 export interface getChannelListByIdParams {
   id: string;
 }
@@ -154,12 +164,29 @@ export interface SearchParams {
   count?: string;
 }
 
+//
+
 class YoutubeMethods {
   private readonly API_KEY: string = process.env.REACT_APP_YOUTUBE_API_KEY || '';
   private readonly BASE_URL: string = "https://www.googleapis.com/youtube/v3";
   private readonly SEARCH_URL: string = `${this.BASE_URL}/search`;
   private readonly VIDEOS_URL: string = `${this.BASE_URL}/videos`;
   private readonly CHANNEL_URL: string = `${this.BASE_URL}/channels`;
+
+  async getVideoListById(id: string): Promise<Youtube.Response.Video> {
+    const params: Youtube.Params.VideoById = {
+      id,
+      key: this.API_KEY,
+      part: 'snippet'
+    };
+
+    try {
+      const res = await fetch(`${this.VIDEOS_URL}?${new URLSearchParams(params)}`);
+      return await res.json();
+    } catch (err) {
+      return err;
+    }
+  }
 
   async getChannelListById(id: string): Promise<Youtube.Response.Channel> {
     const params: Youtube.Params.Channel = {
@@ -181,7 +208,7 @@ class YoutubeMethods {
     pageToken?: string,
     videoCategoryId?: string
   ): Promise<Youtube.Response.Video> {
-    const params: Youtube.Params.Video = {
+    const params: Youtube.Params.VideoByChart = {
       key: this.API_KEY,
       maxResults: "10",
       chart: 'mostPopular',

@@ -1,9 +1,23 @@
 import {AsyncThunk, createAsyncThunk, createSlice, SerializedError} from '@reduxjs/toolkit';
-import {MostPopularVideosParams, SearchParams, Youtube, youtube} from "../api/youtube";
+import {getVideoListByIdParams, MostPopularVideosParams, SearchParams, Youtube, youtube} from "../api/youtube";
 
 interface ThunkApiConfig {
   rejectValue: Youtube.Error
 }
+
+export const fetchVideoResultThunk = createAsyncThunk<Youtube.Response.Video,
+  getVideoListByIdParams,
+  ThunkApiConfig>(
+  'videoResult/fetch',
+  async (params: getVideoListByIdParams, {rejectWithValue}) => {
+    const {id} = params;
+    try {
+      return await youtube.getVideoListById(id);
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
 
 export const fetchPopularResultThunk = createAsyncThunk<Youtube.Response.Video,
   MostPopularVideosParams,
@@ -33,7 +47,7 @@ export const fetchSearchResultThunk = createAsyncThunk<Youtube.Response.Video,
   }
 );
 
-const fetchVideoResultSlice = <T extends AsyncThunk<Youtube.Response.Video, any, ThunkApiConfig>>(
+const fetchBaseResultSlice = <T extends AsyncThunk<Youtube.Response.Video, any, ThunkApiConfig>>(
   name: string,
   thunk: T) =>
   createSlice({
@@ -82,10 +96,13 @@ const fetchVideoResultSlice = <T extends AsyncThunk<Youtube.Response.Video, any,
     }
   });
 
-const PopularResultSlice = fetchVideoResultSlice("popularResult", fetchPopularResultThunk);
+const VideoResultSlice = fetchBaseResultSlice("videoResult", fetchVideoResultThunk);
+const {reducer: videoResultReducer} = VideoResultSlice;
+
+const PopularResultSlice = fetchBaseResultSlice("popularResult", fetchPopularResultThunk);
 const {actions: popularResultActions, reducer: popularResultReducer} = PopularResultSlice;
 
-const SearchResultSlice = fetchVideoResultSlice("searchResult", fetchSearchResultThunk);
+const SearchResultSlice = fetchBaseResultSlice("searchResult", fetchSearchResultThunk);
 const {actions: searchResultActions, reducer: searchResultReducer} = SearchResultSlice;
 
 export const actions = {
@@ -94,6 +111,7 @@ export const actions = {
 }
 
 export default {
+  videoResultReducer,
   popularResultReducer,
   searchResultReducer
 };

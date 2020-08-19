@@ -7,6 +7,16 @@ import {history, store} from './store';
 import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from 'styled-components';
+import 'moment/locale/ko';
+import moment from "moment";
+
+// msw server
+if (process.env.NODE_ENV === 'development') {
+  import('./mocks/browser').then(({ worker }) => {worker.start()});
+}
+
+// locale
+moment.locale("ko");
 
 ReactDOM.render(
   <React.StrictMode>

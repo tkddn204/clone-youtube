@@ -5,9 +5,9 @@ import {ProfileIcon} from "../../Icon";
 
 export default {
   title: 'Atom/Tooltip',
-  component: Tooltip,
+  component: Tooltip
 };
 
 export const DefaultTooltip = () => <Tooltip content="프로필">
   <IconButton icon={ProfileIcon} />
-</Tooltip>
+</Tooltip>;

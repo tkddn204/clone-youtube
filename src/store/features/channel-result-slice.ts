@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {youtube} from "../api/youtube";
+import {getChannelListByIdParams, youtube} from "../api/youtube";
 
 export const fetchChannelResult = createAsyncThunk(
   'channelResult/fetch',
-  async (params: any, queryAPI) => {
+  async (params: getChannelListByIdParams, queryAPI) => {
     const {id} = params;
     try {
       return await youtube.getChannelListById(id);

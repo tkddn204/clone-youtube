@@ -1,11 +1,11 @@
 import React from 'react';
-import Content from '.';
+import PopularVideoList from '.';
 
 export default {
-  title: 'Organism/Content',
-  component: Content,
+  title: 'Organism/PopularVideoList',
+  component: PopularVideoList,
 };
 
-export const DefaultContent = () => <div>
-  <Content/>
+export const DefaultPopularVideoList = () => <div>
+  <PopularVideoList/>
 </div>;

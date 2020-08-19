@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 import IconButton from "../../../atoms/Paper/IconButton";
 import {VerticalMenuIcon} from "../../../atoms/Icon";
+import {VideoItemContentLoader} from "../../ContentLoader/stories";
+import moment from 'moment';
 
 const Container = styled.div`
   width: 249px;
@@ -73,6 +76,8 @@ const DetailMeta = styled.div`
 const DetailMetaContent = styled.div`
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
+  word-wrap: normal;
 `;
 
 const DetailChannelName = styled.div`
@@ -121,60 +126,85 @@ const DetailStreamingSpan = styled.span`
   line-height: 1.2rem;
 `
 
+const MenuIconContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 4px;
+`;
+
 interface Props {
   video?: any
 }
-//{
-//     thumbnailSrc?: string;
-//     title?: string;
-//     channelName?: string;
-//     channelThumbnailSrc?: string;
-//     viewCount?: string;
-//     publishedAt?: string;
-//     isStreaming?: boolean;
-//   }
 
 const VideoItem = (props: Props) => {
   const [video, setVideo] = useState(props.video || []);
-  const { thumbnailSrc, title, channelName, channelThumbnailSrc, viewCount, publishedAt, isStreaming } = video;
+  const [isMouseOver, setMouseOver] = useState(false);
+  const {id, thumbnailSrc, title, channelName, channelThumbnailSrc, viewCount, publishedAt, isStreaming} = video;
 
   useEffect(() => {
     setVideo(props.video);
   }, [props.video]);
 
+  const onContentMouseOver = () => {
+    setMouseOver(true)
+  };
+  const onContentMouseDown = () => {
+    setMouseOver(false)
+  };
+
   return <Container>
-    <Content>
-      <Thumbnail src={ thumbnailSrc } alt={`thumbnail-${title}`} />
-      <DetailContainer>
-        <AvatarContainer>
-          <Avatar src={ channelThumbnailSrc } alt={`channelThumbnail-${channelName}`} />
-        </AvatarContainer>
-        <DetailMetaContainer>
-          <DetailTitle>
-            { title }
-          </DetailTitle>
-          <DetailMeta>
-            <DetailChannelName>
-              {channelName}
-            </DetailChannelName>
-            <DetailMetaContent>
-              <DetailMetaSpan after="•" afterMargin="0 4px">
-                {`조회수 ${viewCount}회`}
-              </DetailMetaSpan>
-              <DetailMetaSpan>
-                {publishedAt}
-              </DetailMetaSpan>
-            </DetailMetaContent>
-          </DetailMeta>
-        </DetailMetaContainer>
-        <IconButton icon={VerticalMenuIcon} />
-      </DetailContainer>
-      <DetailStreamingContainer visibility={isStreaming ? "visible" : "hidden"}>
-        <DetailStreamingSpan>
-          실시간 스트리밍 중
-        </DetailStreamingSpan>
-      </DetailStreamingContainer>
-    </Content>
+    {!!video
+      ? <>
+        <Link to={`/video/${id}`}>
+          <Content onMouseEnter={onContentMouseOver} onMouseLeave={onContentMouseDown}>
+            <Thumbnail src={thumbnailSrc} alt={`thumbnail-${title}`}/>
+            <DetailContainer>
+              <AvatarContainer>
+                <Avatar src={channelThumbnailSrc} alt={`channelThumbnail-${channelName}`}/>
+              </AvatarContainer>
+              <DetailMetaContainer>
+                <DetailTitle>
+                  {title}
+                </DetailTitle>
+                <DetailMeta>
+                  <DetailChannelName>
+                    {channelName}
+                  </DetailChannelName>
+                  <DetailMetaContent>
+                    <DetailMetaSpan after="•" afterMargin="0 4px">
+                      {`조회수 ${new Intl.NumberFormat('ko', {
+                        //@ts-ignore
+                        notation: 'compact',
+                        compactDisplay: "short"
+                      }).format(viewCount)}회`}
+                    </DetailMetaSpan>
+                    <DetailMetaSpan>
+                      {moment(publishedAt).fromNow()}
+                    </DetailMetaSpan>
+                  </DetailMetaContent>
+                </DetailMeta>
+              </DetailMetaContainer>
+            </DetailContainer>
+            <DetailStreamingContainer visibility={isStreaming ? "visible" : "hidden"}>
+              <DetailStreamingSpan>
+                실시간 스트리밍 중
+              </DetailStreamingSpan>
+            </DetailStreamingContainer>
+          </Content>
+        </Link>
+        <MenuIconContainer>
+          {isMouseOver ? <IconButton
+            icon={VerticalMenuIcon}
+            isRipple={false}
+            iconStyle={{
+              color: '#606060'
+            }}
+          /> : null}
+        </MenuIconContainer>
+      </>
+      : <VideoItemContentLoader/>
+    }
   </Container>
 }
 

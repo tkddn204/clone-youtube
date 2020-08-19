@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useDispatch} from "react-redux";
 import {AppDispatch, getAppState, store} from "../../store";
 import VideoList from "../../molecules/VideoList";
-import {fetchPopularResultThunk, actions} from '../../store/features/fetch-video-slice'
+import {fetchPopularResultThunk, actions} from '../../store/features/fetch-youtube-video-slice'
 import {youtube} from "../../store/api/youtube";
 
 const PopularVideoBox = styled.section`
@@ -42,7 +42,7 @@ const getPopularVideoList = async (dispatch: AppDispatch) => {
 const PopularVideoList = (props: any) => {
   const dispatch: AppDispatch = useDispatch();
   useEffect(() => {
-    // getPopularVideoList(dispatch);
+    getPopularVideoList(dispatch);
   }, [dispatch]);
 
   return <PopularVideoBox>
