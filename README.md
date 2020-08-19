@@ -1,9 +1,11 @@
 <p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="./assets/logos/logo-icon.svg" alt="Project logo"></a>
+  <a href="https://tkddn204.github.io/clone-youtube" rel="noopener">
+  <img width=200px height=200px src="./assets/logos/logo-icon.svg" alt="Project logo"></a>
 </p>
 
 <h3 align="center">유투부</h3>
+
+<a href="https://tkddn204.github.io/clone-youtube" rel="noopener"><h4 align="center">홈페이지</h4></a>
 
 <div align="center">
 
@@ -14,7 +16,7 @@
 ---
 
 <p align="center">
-    <a href="https://youtube.com" rel="nofollow">Youtube</a> 사이트 클론 프로젝트
+    <a href="https://youtube.com" rel="nofollow">Youtube 사이트</a> 클론 프로젝트
     <br>
 </p>
 
@@ -30,8 +32,7 @@
 
 ## 🔨 Development <a name = "development"></a>
 
-1. `.env_example`의 이름을 `.env`로 변경해주세요.
-2. youtube data api(v3)의 **api key**를 `.env`의 `REACT_APP_YOUTUBE_API_KEY`에 입력해주세요.
+youtube data api(v3)의 **api key**를 `.env`의 `REACT_APP_YOUTUBE_API_KEY`에 입력해주세요.
 
   ```console
   cp .env_example .env
@@ -39,7 +40,7 @@
   # REACT_APP_YOUTUBE_API_KEY=API키입력
   ```
 
-3. 의존성 설치 후 개발 서버나 스토리북을 켜서 개발해주면 됩니다.
+의존성 설치 후 개발 서버나 스토리북을 켜서 개발해주면 됩니다.
 
   ```console
   # dependencies 설치

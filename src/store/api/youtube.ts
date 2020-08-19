@@ -177,7 +177,7 @@ class YoutubeMethods {
     const params: Youtube.Params.VideoById = {
       id,
       key: this.API_KEY,
-      part: 'snippet'
+      part: 'snippet,statistics'
     };
 
     try {

@@ -12,6 +12,7 @@ export const DefaultVideoDetail = () => {
       id: 'asdfas',
       channelName: '채널이름',
       title: "비디오 타이틀",
+      description: "비디오 설명",
       viewCount: "12345",
       publishedAt: new Date(),
       channelThumbnailSrc: "src",

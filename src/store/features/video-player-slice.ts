@@ -2,7 +2,6 @@ import {createSlice, PayloadAction, SliceCaseReducers} from '@reduxjs/toolkit';
 import {NormalizedYoutubeVideoInfo} from "../selectors";
 
 export interface VideoInfo extends NormalizedYoutubeVideoInfo {
-  tags?: ReadonlyArray<string>;
 }
 
 export interface VideoPlayerInfo extends VideoInfo {

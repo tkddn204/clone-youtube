@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {connect, useDispatch} from "react-redux";
 import {VideoPlayerInfo} from "../store/features/video-player-slice";
-import {AppDispatch, getAppState, store} from "../store";
+import {AppDispatch, getAppState} from "../store";
 import {fetchVideoResultThunk} from "../store/features/fetch-youtube-video-slice";
 import VideoDetail from "../molecules/VideoDetail";
 import {VideoSelector} from "../store/selectors";

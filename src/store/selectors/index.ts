@@ -9,12 +9,14 @@ const getDrawerState = (state: any) => state.drawerState;
 
 export interface NormalizedYoutubeVideoInfo {
   id: string,
-  thumbnailSrc?: string,
   title: string,
+  description: string,
   channelName: string,
+  publishedAt: Date,
+  thumbnailSrc?: string,
   channelThumbnailSrc?: string,
   viewCount?: string,
-  publishedAt: Date,
+  tags?: ReadonlyArray<string>,
   isStreaming: boolean
 }
 
@@ -22,10 +24,12 @@ const normalize = (result: Youtube.Response.VideoItem): NormalizedYoutubeVideoIn
   id: result.id,
   thumbnailSrc: result.snippet.thumbnails.medium ? result.snippet.thumbnails.medium.url : result.snippet.thumbnails.default.url,
   title: result.snippet.title,
+  description: result.snippet.description,
   channelName: result.snippet.channelTitle,
   channelThumbnailSrc: result.snippet.channelThumbnails?.default.url,
   viewCount: result.statistics?.viewCount,
   publishedAt: new Date(result.snippet.publishedAt),
+  tags: result.snippet.tags,
   isStreaming: false
 });
 

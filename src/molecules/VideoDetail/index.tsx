@@ -10,6 +10,7 @@ import Button from "../../atoms/Paper/Button";
 import IconButton from "../../atoms/Paper/IconButton";
 
 const VideoDetailBox = styled.div`
+  padding: 20px 0 8px 0;
   overflow: hidden;
   font-weight: 400;
   line-height: 2.4rem;
@@ -17,6 +18,7 @@ const VideoDetailBox = styled.div`
   color: #030303;
   word-break: break-word;
   letter-spacing: normal;
+  border-bottom: 1px solid #0000001a;
 `;
 
 const TagListBox = styled.div`
@@ -95,7 +97,10 @@ const VideoDetail = (props: VideoDetailProps) => {
   return <VideoDetailBox>
     {!!tags ?
       <TagListBox>
-        {tags.map(tag => <Tag to={`?q=${tag}`}>{tag}&nbsp;</Tag>)}
+        {tags.slice(0, 3).map(tag => {
+          const sharpTag = `#${tag}`;
+          return <Tag to={`?q=${sharpTag}`}>{sharpTag}&nbsp;</Tag>
+        })}
       </TagListBox> : null
     }
     <VideoTitle>
@@ -104,7 +109,7 @@ const VideoDetail = (props: VideoDetailProps) => {
     <VideoInfoContainer>
       <VideoInfoTextBox>
         <VideoInfoText afterContent="•">
-          조회수 {!!viewCount ? viewCount : 0}회
+          조회수 {!!viewCount ? parseInt(viewCount).toLocaleString() : 0}회
         </VideoInfoText>
         <VideoInfoText>
           {publishedAt.toLocaleDateString()}

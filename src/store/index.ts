@@ -4,7 +4,9 @@ import {createBrowserHistory} from 'history';
 import reducers from './reducers';
 import logger from 'redux-logger';
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+  basename: process.env.PUBLIC_URL
+});
 
 // Store
 const rootReducer = (history: any) => combineReducers({

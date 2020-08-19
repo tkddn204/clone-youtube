@@ -26,3 +26,9 @@ export const generateParams = (params: Record<string, string>) => {
   Object.keys(params).forEach((key: string) => params[key] === undefined && delete params[key]);
   return new URLSearchParams(params);
 }
+
+export const setViewCount = (viewCount: number) => new Intl.NumberFormat('ko', {
+  //@ts-ignore
+  notation: 'compact',
+  compactDisplay: "short"
+}).format(viewCount);
