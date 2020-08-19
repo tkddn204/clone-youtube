@@ -29,6 +29,7 @@
 
 ## 🧐 About <a name = "about"></a>
 공부 목적으로 개발 중입니다.
+어떤 내용을 공부했는지는 [링크](https://www.notion.so/rightpair/135cdcd8144248a8bfa27607e16521ba)를 참조해주세요.
 
 ## 🔨 Development <a name = "development"></a>
 
