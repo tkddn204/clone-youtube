@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/clone-youtube/static/js/main.dfdf9ab8.chunk.js",
-    "main.js.map": "/clone-youtube/static/js/main.dfdf9ab8.chunk.js.map",
+    "main.js": "/clone-youtube/static/js/main.2f60d9d4.chunk.js",
+    "main.js.map": "/clone-youtube/static/js/main.2f60d9d4.chunk.js.map",
     "runtime-main.js": "/clone-youtube/static/js/runtime-main.a2df1340.js",
     "runtime-main.js.map": "/clone-youtube/static/js/runtime-main.a2df1340.js.map",
     "static/js/2.08f46762.chunk.js": "/clone-youtube/static/js/2.08f46762.chunk.js",
     "static/js/2.08f46762.chunk.js.map": "/clone-youtube/static/js/2.08f46762.chunk.js.map",
     "index.html": "/clone-youtube/index.html",
-    "precache-manifest.90c07df8d01cb72f4555a92e91b54897.js": "/clone-youtube/precache-manifest.90c07df8d01cb72f4555a92e91b54897.js",
+    "precache-manifest.1c32d0881abc1668fb1e9fdfde31c2c4.js": "/clone-youtube/precache-manifest.1c32d0881abc1668fb1e9fdfde31c2c4.js",
     "service-worker.js": "/clone-youtube/service-worker.js",
     "static/js/2.08f46762.chunk.js.LICENSE.txt": "/clone-youtube/static/js/2.08f46762.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a2df1340.js",
     "static/js/2.08f46762.chunk.js",
-    "static/js/main.dfdf9ab8.chunk.js"
+    "static/js/main.2f60d9d4.chunk.js"
   ]
 }
